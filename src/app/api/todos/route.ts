@@ -8,8 +8,6 @@ const fnValidation = new Validation(new Map([
     ['skip', (value) => !isNaN(Number(value)) && Number(value) > 0]
 ]));
 
-
-
 export async function GET(request: Request) {
 
     const { searchParams } = new URL ( request.url );
@@ -56,3 +54,4 @@ export async function POST(request: Request) {
     }
 
 }
+
