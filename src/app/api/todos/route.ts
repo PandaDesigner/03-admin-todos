@@ -55,3 +55,19 @@ export async function POST(request: Request) {
 
 }
 
+
+export async function DELETE(request: Request) {
+
+    await prisma.todo.deleteMany({
+        where: {
+            completed: true
+        }
+    });
+
+    return NextResponse.json({
+        method: request.method,
+        message: 'Todos deleted completed'
+    })
+
+}
+

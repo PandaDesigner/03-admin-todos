@@ -88,3 +88,22 @@ export async function PUT(request: Request, { params }: Segments) {
     }
 
 }
+
+export async function DELETE(_request: Request, { params }: Segments) {
+    const { id } = await params;
+
+    const validation = fnValidation.validate(new URLSearchParams({ id }));
+    if (validation.error && Object.keys(validation.error).length > 0) {
+        console.error(id)
+        return NextResponse.json(validation, { status: 400 });
+    }
+
+    const deletedTodo = await prisma.todo.delete({where: {
+        id
+        }})
+
+    return NextResponse.json({
+       message: _request.method,
+       todo: deletedTodo
+    });
+}
