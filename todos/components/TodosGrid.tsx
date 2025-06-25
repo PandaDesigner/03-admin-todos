@@ -2,8 +2,9 @@
 import {Todo} from "@/generated/prisma";
 import {FC, useCallback} from "react";
 import {TodoItems} from "./TodoItems";
-import * as api from '@todos/helpers/todos.helpers';
-import {useRouter} from "next/navigation"; // Importing the updateTodo function
+//import * as api from '@todos/helpers/todos.helpers';
+import {useRouter} from "next/navigation";
+import {toggleTodo} from "@todos/actions/todo.actions"; // Importing the updateTodo function
 
 
 interface Props {
@@ -14,13 +15,13 @@ interface Props {
 const TodosGrid:FC<Props> = ({ todos= [] }) => {
 
     const router = useRouter();
-
+/*
     const toggleTodo = useCallback(async (id: string, completed: boolean) => {
         const updatedTodo = await api.updateTodo(id, completed);
         router.refresh();
         return updatedTodo;
     },[router])
-
+  */
 
     return (
         <>

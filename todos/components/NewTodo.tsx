@@ -2,8 +2,8 @@
 
 import {IoTrashOutline} from "react-icons/io5";
 import {FormEvent, useCallback, useState} from "react";
-import * as api from '@todos/helpers/todos.helpers';
 import {useRouter} from "next/navigation";
+import {addTodo, deleteTodosCompleted} from "@todos/actions/todo.actions";
 
 export const NewTodo = () => {
     const [inputValue, setInputValue] = useState('');
@@ -12,13 +12,12 @@ export const NewTodo = () => {
     const onSubmit = useCallback(async (e: FormEvent ) => {
         e.preventDefault();
         if(inputValue.trim().length === 0) return;
-        await api.createTodo(inputValue)
+        await addTodo(inputValue)
         setInputValue('')
-        router.refresh();
-    },[inputValue, router])
+    },[inputValue])
 
     const deletedCompleted = useCallback(async () => {
-        await api.deleteTodosCompleted();
+        await deleteTodosCompleted();
         router.refresh();
     },[router])
 
